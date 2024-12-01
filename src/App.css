@@ -1,0 +1,22 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: url("public/assets/cursors/normal.png"), auto;
+}
+
+select {
+    width: 100px;
+    height: 50px;
+}
+
+img {
+    width: 700px;
+}
+
+body {
+    background-image: url("https://external-preview.redd.it/FKtWyh6utIGwxR0aUtXu5-tIFkYWJnKycG0uQs_0VS0.jpg?auto=webp&s=2e90188a7253df19f14c48f5fc44a2c63cdb6492");
+    background-size: cover;
+}
+
+.chassis-icon:hover {
+    filter: drop-shadow(0px 0px 3px whitesmoke);
+}
