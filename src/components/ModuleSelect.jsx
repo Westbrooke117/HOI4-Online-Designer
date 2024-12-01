@@ -25,6 +25,7 @@ const ModuleSelect = ({activeDesign, updateDesign, label, type, showChanges}) =>
 
     const debouncedShowChanges = useCallback(
         debounce((key, module) => {
+            console.log(module)
             showChanges(key, module);
         }, 100), // Adjust debounce delay as needed
         [showChanges]
@@ -58,7 +59,11 @@ const ModuleSelect = ({activeDesign, updateDesign, label, type, showChanges}) =>
                                 <MenuContent>
                                     {
                                         filterModulesBySubcategory(subCategory).map((module, index) => (
-                                            <MenuItem onMouseEnter={() => handleHover(module)} key={index+module["Part Name"]} value={module["Part Name"]}>
+                                            <MenuItem
+                                                onMouseEnter={() => handleHover(module)}
+                                                onMouseLeave={() => handleHover(activeDesign[label])}
+                                                key={index+module["Part Name"]}
+                                                value={module["Part Name"]}>
                                                 <Image w={5} src={module.Image}/>{module["Part Name"]}
                                             </MenuItem>
                                         ))
@@ -68,7 +73,11 @@ const ModuleSelect = ({activeDesign, updateDesign, label, type, showChanges}) =>
                         ))
                         :
                         filterModules(type).map((module, index) => (
-                            <MenuItem onMouseEnter={() => handleHover(module)} key={index+module["Part Name"]} value={module["Part Name"]}>
+                            <MenuItem
+                                onMouseEnter={() => handleHover(module)}
+                                onMouseLeave={() => handleHover(activeDesign[label])}
+                                key={index+module["Part Name"]}
+                                value={module["Part Name"]}>
                                 <Image w={5} src={module.Image}/>{module["Part Name"]}
                             </MenuItem>
                         ))

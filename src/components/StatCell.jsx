@@ -30,7 +30,7 @@ const StatCell = ({label, activeStatValue, proposedStatValue, imageURL}) => {
                     <StatRoot>
                         <HStack mb={-1} mt={-1} justifyContent={'space-between'}>
                             <StatLabel mr={5} whiteSpace={'nowrap'} color={'white'}>{label}:</StatLabel>
-                            <Box whiteSpace={'nowrap'} >
+                            <Box whiteSpace={'nowrap'}>
                                 {
                                     percentageStatChange < 0 ?
                                         <StatDownTrend>{Math.floor(percentageStatChange)}%</StatDownTrend>

@@ -3,10 +3,11 @@ import {ModuleSelect} from "./components/ModuleSelect.jsx";
 import {StatsTable} from "./components/StatsTable.jsx";
 import {useState} from "react";
 import * as moduleData from './json/modules'
-import {Box, Container, HStack, Stack} from "@chakra-ui/react";
+import {Box, Container, Heading, Text, HStack, Stack, Separator, DataList} from "@chakra-ui/react";
 import {StatUpgradeInput} from "./components/StatUpgradeInput.jsx";
 import {ChassisSelect} from "./components/ChassisSelect.jsx";
 import {findModuleByName} from "./utils/findModuleByName.js";
+import {DataTable} from "./components/DataTable.jsx";
 
 function App() {
     const [activeDesign, setActiveDesign] = useState({
@@ -46,31 +47,49 @@ function App() {
     }
 
   return (
-      <Container display={'flex'} justifyContent={'center'}>
-          <Stack>
-              <HStack gap={0} mt={150} backgroundColor={'rgba(0,0,0,0.85)'} p={10} borderRadius={20}>
+      <Container display={'flex'} justifyContent={'center'} alignItems={'center'}>
+          <Stack gap={10} p={10} mt={5} mb={5} alignItems={'center'} justifyContent={'center'} backgroundColor={'rgba(0,0,0,0.90)'} borderRadius={15}>
+              <HStack gap={0}>
                   <Box>
                       <HStack gap={0}>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Turret"} type={"Turrets"}/>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Main Armament"} type={"Armaments"}/>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Special Feature Slot 1"} type={"Special Features"}/>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Special Feature Slot 2"} type={"Special Features"}/>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Special Feature Slot 3"} type={"Special Features"}/>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Special Feature Slot 4"} type={"Special Features"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Turret"} type={"Turrets"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Main Armament"} type={"Armaments"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Special Feature Slot 1"}
+                                        type={"Special Features"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Special Feature Slot 2"}
+                                        type={"Special Features"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Special Feature Slot 3"}
+                                        type={"Special Features"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Special Feature Slot 4"}
+                                        type={"Special Features"}/>
                       </HStack>
                       <ChassisSelect activeDesign={activeDesign} updateDesign={updateDesign}/>
                       <HStack gap={0}>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Suspension"} type={"Suspension"}/>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Armor Type"} type={"Armor Type"}/>
-                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} label={"Engine Type"} type={"Engine Type"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Suspension"} type={"Suspension"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Armor Type"} type={"Armor Type"}/>
+                          <ModuleSelect activeDesign={activeDesign} showChanges={showChanges}
+                                        updateDesign={updateDesign} label={"Engine Type"} type={"Engine Type"}/>
                           <HStack ml={'auto'} justifyContent={'space-between'}>
-                              <StatUpgradeInput activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} upgradeTarget={"Engine"}/>
-                              <StatUpgradeInput activeDesign={activeDesign} showChanges={showChanges} updateDesign={updateDesign} upgradeTarget={"Armor"}/>
+                              <StatUpgradeInput activeDesign={activeDesign} showChanges={showChanges}
+                                                updateDesign={updateDesign} upgradeTarget={"Engine"}/>
+                              <StatUpgradeInput activeDesign={activeDesign} showChanges={showChanges}
+                                                updateDesign={updateDesign} upgradeTarget={"Armor"}/>
                           </HStack>
                       </HStack>
                   </Box>
                   <StatsTable activeDesign={activeDesign} proposedDesign={proposedDesign}/>
               </HStack>
+              <Box maxW={"90vw"} overflowX={"scroll"}>
+                  <DataTable activeDesign={activeDesign}/>
+              </Box>
           </Stack>
       </Container>
   )
