@@ -1,11 +1,12 @@
 import {filterModules, filterModulesBySubcategory} from "../utils/filterModules.js";
 import {MenuContent, MenuItem, MenuRoot, MenuTrigger, MenuTriggerItem} from "./ui/menu.jsx";
 import {Button, Image} from "@chakra-ui/react";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {findModuleByName} from "../utils/findModuleByName.js";
 import {Tooltip} from "./ui/tooltip.jsx";
 import {generateSubCategories} from "../utils/generateSubCategories.js";
 import PropTypes from "prop-types";
+import {debounce} from "lodash";
 
 const ModuleSelect = ({activeDesign, updateDesign, label, type, showChanges}) => {
     const [selectedModuleName, setSelectedModuleName] = useState("");
@@ -22,8 +23,15 @@ const ModuleSelect = ({activeDesign, updateDesign, label, type, showChanges}) =>
             <Image h={11} alt={activeDesign[label]["Part Name"]} src={activeDesign[label]["Image"]}/>
     }
 
+    const debouncedShowChanges = useCallback(
+        debounce((key, module) => {
+            showChanges(key, module);
+        }, 100), // Adjust debounce delay as needed
+        [showChanges]
+    );
+
     const handleHover = (module) => {
-        showChanges(label, module)
+        debouncedShowChanges(label, module)
     }
 
     return (
